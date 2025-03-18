@@ -12,30 +12,42 @@
       color: #4b2c4b;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
       align-items: center;
       justify-content: center;
       text-align: center;
+      min-height: 100vh;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 1rem;
+      animation: fadeIn 1s ease-in-out;
+      box-sizing: border-box;
     }
 
     header {
       padding: 2rem 1rem 1rem;
-      flex: 0 0 auto;
       width: 100%;
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
     .timer {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       background: #fff;
       display: inline-block;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.2rem;
       border-radius: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: pulse 2s infinite;
     }
 
     .gallery-container {
@@ -55,21 +67,24 @@
 
     .gallery img {
       flex: 0 0 auto;
-      width: 250px;
+      width: 200px;
       height: auto;
       border-radius: 15px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
       scroll-snap-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
     }
 
     footer {
       padding: 1rem;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #8b5e8b;
-      flex: 0 0 auto;
     }
 
-    /* Estilo para esconder scrollbar em dispositivos iOS */
     .gallery::-webkit-scrollbar {
       display: none;
     }
@@ -77,31 +92,61 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+      50% { box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+      100% { box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .timer {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+
+      .gallery img {
+        width: 160px;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Nosso Amor ❤️</h1>
-    <div class="timer" id="timer">Carregando tempo...</div>
-  </header>
+  <div class="content">
+    <header>
+      <h1>Nosso Amor ❤️</h1>
+      <div class="timer" id="timer">Carregando tempo...</div>
+    </header>
 
-  <div class="gallery-container">
-    <section class="gallery">
-      <img src="foto1.jpg" alt="Foto do casal 1">
-      <img src="foto2.jpg" alt="Foto do casal 2">
-      <img src="foto3.jpg" alt="Foto do casal 3">
-      <img src="foto4.jpg" alt="Foto do casal 4">
-      <!-- Adicione mais fotos se quiser -->
-    </section>
+    <div class="gallery-container">
+      <section class="gallery">
+        <img src="foto1.jpg" alt="Foto do casal 1">
+        <img src="foto2.jpg" alt="Foto do casal 2">
+        <img src="foto3.jpg" alt="Foto do casal 3">
+        <img src="foto4.jpg" alt="Foto do casal 4">
+      </section>
+    </div>
+
+    <footer>
+      Feito com amor ❤️ por nós
+    </footer>
   </div>
 
-  <footer>
-    Feito com amor ❤️ por nós
-  </footer>
-
   <script>
-    // Defina a data de início do relacionamento
-    const startDate = new Date('2020-06-01T00:00:00'); // Ex: 1 de Junho de 2020
+    const startDate = new Date('2020-06-01T00:00:00');
 
     function updateTimer() {
       const now = new Date();
