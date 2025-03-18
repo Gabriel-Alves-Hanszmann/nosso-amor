@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,15 +10,18 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
       color: #4b2c4b;
-      text-align: center;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     header {
       padding: 2rem 1rem 1rem;
       flex: 0 0 auto;
+      width: 100%;
     }
 
     h1 {
@@ -36,12 +38,19 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
+    .gallery-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
     .gallery {
       display: flex;
       overflow-x: auto;
       gap: 1rem;
       padding: 1.5rem 1rem;
       scroll-snap-type: x mandatory;
+      max-width: 100%;
     }
 
     .gallery img {
@@ -60,6 +69,7 @@
       flex: 0 0 auto;
     }
 
+    /* Estilo para esconder scrollbar em dispositivos iOS */
     .gallery::-webkit-scrollbar {
       display: none;
     }
@@ -75,29 +85,37 @@
     <div class="timer" id="timer">Carregando tempo...</div>
   </header>
 
-  <section class="gallery">
-    <img src="foto1.jpg" alt="Foto do casal 1">
-    <img src="foto2.jpg" alt="Foto do casal 2">
-    <img src="foto3.jpg" alt="Foto do casal 3">
-    <img src="foto4.jpg" alt="Foto do casal 4">
-  </section>
+  <div class="gallery-container">
+    <section class="gallery">
+      <img src="foto1.jpg" alt="Foto do casal 1">
+      <img src="foto2.jpg" alt="Foto do casal 2">
+      <img src="foto3.jpg" alt="Foto do casal 3">
+      <img src="foto4.jpg" alt="Foto do casal 4">
+      <!-- Adicione mais fotos se quiser -->
+    </section>
+  </div>
 
   <footer>
     Feito com amor ❤️ por nós
   </footer>
 
   <script>
-    const startDate = new Date('2020-06-01T00:00:00');
+    // Defina a data de início do relacionamento
+    const startDate = new Date('2020-06-01T00:00:00'); // Ex: 1 de Junho de 2020
+
     function updateTimer() {
       const now = new Date();
       const diff = now - startDate;
+
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
+
       document.getElementById('timer').innerText =
         `${days} dias, ${hours}h ${minutes}m ${seconds}s juntos!`;
     }
+
     setInterval(updateTimer, 1000);
     updateTimer();
   </script>
